@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Brazil Healthcare Project</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="css/bootstrap-formhelpers.css">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="brazilApp">
+	<div class="container">
+    	<nav class="navbar navbar-default main-nav" role="navigation">
+			  <!-- Met HI Lab Logo -->        
+        <div class="navbar-header">
+          <a href="http://www.met-hilab.org/"><img src="img/hilab-logo.png" alt="MET HiLab"></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#antidote-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>			  
+ 		  	</div>          
+        <!-- Navigation Tabs -->
+        <div class="collapse navbar-collapse" id="antidote-navbar">
+          <ul class="nav nav-tabs main-nav-ul">
+              <li><a href="#home" id="tab-home"><img src="img/home.jpg">Home</a></li>
+              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Brazil</a></li>
+              <li><a href="#toxin" id="tab-toxin"><img src="img/toxin.jpg">Analysis</a></li>
+              <li><a href="#FAQ" id="tab-FAQ"><img src="img/FAQ.jpg">FAQ</a></li>   
+          </ul>
+        </div>
+		  </nav>
+      
+      <!-- Page Display -->
+      <div class="main-content">        	       
+   		    <div class="hide" id="user-info-div">
+          	<h2 class="section-title"><span id="alg-title"></span> Algorithm</h2>                        
+              <p>
+                Please enter the country and year you want the data for.
+              </p></br>
+
+              <!-- User information form -->
+              <div class="row" ng-controller="BmiAndBsaCtrl">                                
+                  <form class="form-horizontal col-sm-7" id="info-form">
+                      <div class="form-group">                    
+                          <label for="age" class="col-sm-3 control-label"><font color="red">* </font>County Name</label>
+                          <div class="col-sm-5">
+                              <input type="text" class="form-control" id="age" name="age" placeholder="Eg: Braslia" ng-blur="showBmiAndBsaResult()">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="height" class="col-sm-3 control-label"><font color="red">* </font>Year</label>
+                          <div class="col-sm-5">
+                              <input type="text" class="form-control" id="height" name="height" placeholder="From 2000 - 2010" ng-blur="showBmiAndBsaResult()">
+                          </div>
+                      </div>
+                      <input type="hidden" id="option" value="">
+                      <div class="col-xs-3 info-reset">
+                              <button type="button" class="btn btn-primary" id="reset-btn" ng-click="resetInfo()">Submit</button>
+                      </div>         
+                  </form>
+
+                  <!-- Result of BMI and BSA calculation -->
+                  <div class="col-sm-5">
+                      <div class="row">
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div ng-view id="alg-view"></div>
+      </div>
+
+		<!-- Website Footer -->
+		<footer id="footer">
+			<div class="text-center">
+				<img src="img/bu-logo-small.gif">
+  			<div>
+    			<ul class="list-inline">
+          	<li><a href="http://www.met-hilab.org/" target="_blank">MET HI Lab</a></li>
+          </ul>
+			  </div>
+    	</div>
+      <!-- Disclaimer -->
+  		<div class="col-lg-offset-2 col-lg-8 main-disclaimer">
+		    <p>
+          DISCLAIMER: This educational program is not intended for individual patient care. If you are caring for a known or suspected poisoned patient, please contact your regional poison control center for patient specific management by dialing 1-800-222-1222.
+        </p>
+  		</div>
+    </footer>
+	</div>  <!-- /container -->
+  
+  <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>     
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script> 
+</body>
+</html>
