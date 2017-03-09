@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BlackWidow Test</title>
+  <link type="text/css" rel="stylesheet" href="qunit-1.15.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script type="text/javascript" src="qunit-1.15.0.js"></script>
+  <script type="text/javascript" src="../js/algorithm/BlackWidow.js"></script>  <!-- Load algorithm script --> 
+  <script>
+
+    QUnit.test( "BlackWidow Test", function( assert ) {
+
+      /*********** String of Expected Results ***********/ 
+      
+      var a = "Black Widow envenomation Algorithm.<br/>";
+      var b = "For the treatement of Black Widow (Latrodectus mactans) envenomation.<br/><br/>";
+      var c = "<br/>(Merck & Co., Inc. , 2014)";
+      
+      var stringSystemicReaction = 
+          "<br/>As with any administration of serum products, support for "
+          + "systemic reaction should be made ready prior to administration.";
+      var stringSerumSickness = 
+          "<br/>Patients should be observed for serum sickness for an average "
+          + "of 8-12 days following administration of antivenin.";
+      var stringNeonate = a+b+
+          "Safety and efficacy has not been established in neonates.<br/>"
+          + "Please consult neonatologist for dosing instructions.";
+      var stringInfantChildren = a+b+
+          "Prior to therapeutic administration a skin test should be performed "
+          + "to determine sensitivity to antivenin serum. Inject a 1:10 dilution of "
+          + "antivenin serum intradermally. If there is no reaction after 10 minutes, "
+          + "proceed with antivenin administration.<br/><br/>"
+          + "Antivenin administration in children:<br/><br/>"
+          + "Intravenous administration is preferred method in children. Administer "
+          + "entire reconstituted vial (2.5 ml) of antivenin in 10ml to 50ml of Normal Saline "
+          + "over 15 minutes. Symptoms should subside in 1 to 3 hours.";
+      var stringAdolescent = a+b+
+          "Prior to therapeutic administration a skin test should be performed "
+          + "to determine sensitivity to antivenin serum. Inject a 1:10 dilution of "
+          + "antivenin serum intradermally. If there is no reaction after 10 minutes, "
+          + "proceed with antivenin administration.<br/><br/>"
+          + "Antivenin administration in adolescents:<br/><br/>"
+          + "Intravenous administration is preferred method in children. Administer "
+          + "entire reconstituted vial (2.5 ml) of antivenin in 10ml to 50ml of Normal Saline "
+          + "over 15 minutes. Symptoms should subside in 1 to 3 hours.";
+      var stringElderly = a+b+
+          "Prior to therapeutic administration a skin test should be performed "
+          + "to determine sensitivity to antivenin serum. Inject a 1:10 dilution of "
+          + "antivenin serum intradermally. If there is no reaction after 10 minutes, "
+          + "proceed with antivenin administration.<br/><br/>"
+          + "Antivenin administration in adolescents:<br/><br/>"
+          + "Intravenous administration is preferred method in the elderly. Administer "
+          + "entire reconstituted vial (2.5 ml) of antivenin in 10ml to 50ml of Normal Saline "
+          + "over 15 minutes. Symptoms should subside in 1 to 3 hours.";
+      var stringAdultNatural = a+b+
+          "For a healthy patient aged 16 to 60, it is recommended that the patient not receive "
+          + "antivenin serum and only pain symptoms should be treated. Healthly patients aged 16 "
+          + "to 60 should receive antivenin only when envenomation symptoms are moderate to severe.";
+      var stringAdult = a+b+
+          "Prior to therapeutic administration a skin test should be performed "
+          + "to determine sensitivity to antivenin serum. Inject a 1:10 dilution of "
+          + "antivenin serum intradermally. If there is no reaction after 10 minutes, "
+          + "proceed with antivenin administration.<br/><br/>"
+          + "Intravenous administration adults:<br/>"
+          + "Administer entire reconstituted vial (2.5 ml) of antivenin in 10ml to 50ml of "
+          + "Normal Saline over 15 minutes. Symptoms should subside in 1 to 3 hours. "
+          + "Intramuscular administration adults:<br/>"
+          + "Reconstitute antivenin vial with diluent supplied in kit. Administer "
+          + "intramuscularly to the anterolateral thigh. Placement of dose allows tourniquet "
+          + "to be applied in the event of systemic reaction.";
+
+
+      /*********** Test Case ***********/ 
+
+      expect(202); // expect running 202 times
+
+      var age = []; // from 0 to 100
+      for (var k = 0; k <= 100; k++) {
+        age[k] = k;
+      }
+      var antiveninOpts = ["Severe", "Mild"];
+
+      for (i in age) {
+        for (j in antiveninOpts) {
+          
+          var treatment = new BlackWidow(age[i], 0, 0, antiveninOpts[j]).blackWidow();
+          
+          if (age[i] == 0) {
+            assert.deepEqual(stringNeonate + stringSystemicReaction + stringSerumSickness + c, treatment, "Correct treatment recommendations.");
+          }
+          else if (age[i] < 12) {
+            assert.deepEqual(stringInfantChildren + stringSystemicReaction + stringSerumSickness + c, treatment, "Correct treatment recommendations.");
+          }
+          else if (age[i] >= 12 && age[i] < 16) {
+            assert.deepEqual(stringAdolescent + stringSystemicReaction + stringSerumSickness + c, treatment, "Correct treatment recommendations.");
+          }
+          else if (age[i] >= 16 && age[i] <= 60) {
+            if (antiveninOpts[j] == "Severe") 
+              assert.deepEqual(stringAdult + stringSystemicReaction + stringSerumSickness + c, treatment, "Correct treatment recommendations."); 
+            else if (antiveninOpts[j] == "Mild") 
+              assert.deepEqual(stringAdultNatural + c, treatment, "Correct treatment recommendations.");
+          }
+          else if (age[i] > 60) {
+            assert.deepEqual(b + stringElderly + stringSystemicReaction + stringSerumSickness + c, treatment, "Correct treatment recommendations.");
+          }   
+        }
+      }
+      
+    });
+
+  </script>
+</body>
+</html>

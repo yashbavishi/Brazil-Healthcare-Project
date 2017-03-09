@@ -1,0 +1,154 @@
+/* Customized Style */
+
+body {
+	margin: 0px auto; 
+	padding: 0px;
+	overflow-y: scroll;
+}
+
+.main-nav {
+	padding-top:20px; 
+	border:none; 
+	background-color:#FFFFFF;
+}
+
+.main-nav-ul {
+	margin: 0px -15px 0px -15px;
+	padding-left:52%;
+	padding-top:35px;
+	font-size:18px;
+}
+
+.main-nav-ul li a{
+	padding-left:12px;
+	padding-right:15px;
+  	text-align:center;
+	color:#000;
+}
+
+.main-nav-ul img {
+	width:20px;
+	height:20px;
+	margin-right:10px;
+}
+
+.main-content {
+	min-height:465px;
+}
+
+#home-page {
+	min-height:470px;
+}
+
+#antidote-page, #toxin-page {
+	min-height:200px;
+}
+
+#alg-view {
+	margin-left: -3px;
+}
+
+#footer {
+	padding:50px 0px 20px 0px;
+}
+
+#footer > div > div {
+	display:inline-block;
+	vertical-align:bottom;
+}
+
+.main-disclaimer {
+	text-align:center;
+}
+
+.main-disclaimer > p {
+	padding:10px 0 10px 0;
+	font-size:11px; 
+	color:gray; 	
+}
+
+.section-title {
+	padding-top:5px;
+	padding-bottom:15px;
+}
+
+#bmi-bsa-correct {
+	margin-bottom:0px;
+	width: 97%;
+	font-size:17px;
+	font-weight:bold;
+}
+
+#bmi-bsa-wrong {
+	display:none;
+	width: 97%;
+	margin-bottom: -15px;
+	font-size:17px;
+	font-weight:bold;
+}
+
+#bmi-bsa-correct p, #bmi-bsa-wrong p {
+	margin-left:20px;
+}
+
+/* For reset button */
+.info-reset {
+	margin-top:15px;
+	margin-left:-2.5%;
+}
+
+.alg-container {
+	padding-left:20px;
+}
+
+/* For error message */
+label.error {
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+
+input[type="radio"] {
+	width:18px;
+	height:18px;
+}
+
+/* Hide the div with "hide-div" calss */
+div[class*="hide-div"] {
+	display:none;
+}
+
+#again-antidote-btn, #again-toxin-btn {
+	display:none;
+}
+
+span[class="highlight"] {
+	color:#F00;
+	font-weight:bold;
+}
+
+/* Indent warning message */
+/*.indent-pane {
+	padding-left:40px;
+}
+
+.indent-pane-content {
+	padding-left:43px;
+}*/
+
+.plain {
+	font-weight:normal;
+}
+
+#FAQ-table th, #FAQ-table td {
+	padding-left:30px;
+}
+
+.FAQ-table-FDAapproved {
+	width:150px;
+}
+
+#flowchart {
+	width: 100%;
+	height:100%;
+}
