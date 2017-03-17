@@ -25,31 +25,35 @@ table tr:nth-child(even) {
   <script type="text/javascript" src="js/newapp.js"></script> 
   <script type="text/javascript" src="js/validation.js"></script>
   <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>
-<body>
+  <script type="text/javascript" src="js/directives/appInfo.js"></script>
+<body ng-app="myApp" ng-controller="customersCtrl">
  
-<div ng-app="myApp" ng-controller="customersCtrl">
-
-
+<div>
+<app-info></app-info>
+<form>
     Year:<br>
     <input type="text" ng-model="year"><br>
     Region:<br>
     <input type="text" ng-model="form.region">
     <br><br>
-    <button ng-click="getRecords(form)">Submit</button>
+    <button  ng-click="getRecords(form)">Submit</button>
+    </form>
   
-<p>{{ region }}</p>
-<!-- <table>
-  <tr ng-repeat="x in names">
+<p>something</p>
+
+<table>
+  <tr ng-repeat="x in names track by $index">
     <td>{{ x.pop_sus }}</td>
     <td>{{ x.reigon }}</td>
   </tr>
-</table> -->
- <appInfo ></appInfo>
+</table>
+
+
 </div>
  
 
-
  
+
 </body>
 </html>
 
