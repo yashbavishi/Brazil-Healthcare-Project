@@ -1,0 +1,23 @@
+<!-- FAQ Page -->
+<h2>Antidotes and Toxins Lists</h2>
+<br/> 
+<table class="table table-striped" id="FAQ-table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Antidote</th>
+      <th>Toxin</th>
+      <th class="FAQ-table-FDAapproved">FDA Approved</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="alg in list">
+      <td>{{alg.number}}</td>
+      <!-- <td><a href="flowchart.html?alg={{alg.alg}}" target="_blank">{{alg.antidote}}</a></td>
+      <td><a href="flowchart.html?alg={{alg.alg}}" target="_blank">{{alg.toxin}}</a></td> -->
+      <td>{{alg.antidote}}</td>
+      <td>{{alg.toxin}}</td>
+      <td>{{alg.FDAapproved}}</td>
+    </tr> 
+  </tbody>
+</table>

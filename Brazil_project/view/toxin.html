@@ -1,0 +1,79 @@
+<!-- Toxins Page -->
+<script type="text/javascript" src="js/framework/bootstrap-formhelpers.js"></script>
+<script type="text/javascript" src="js/controller/AlgorithmSwitchCtrl.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){    
+    // Initialize toxin page
+    setDefaultSelection();
+    chooseToxin();
+});
+</script>
+<div id="toxin-page">
+    <form class="form-horizontal">
+      <div class="form-group col-sm-7">                    
+        <label for="toxin" class="col-sm-3 control-label"><font color="red">* </font>Choose Toxin</label>
+        <div class="col-sm-8">
+          <div class="bfh-selectbox" id="toxin" data-value="Toxin" data-filter="true">
+            <div data-value="Toxin">------------------ Select a Toxin Here ------------------</div>
+            <div data-value="acetaminophen">acetaminophen</div>
+            <div data-value="acetonitrile">acetonitrile</div>
+            <div data-value="acrylonitrile">acrylonitrile</div>
+            <div data-value="americium">americium</div>
+            <div data-value="anticholinergic syndrome">anticholinergic syndrome</div>                      
+            <div data-value="apricot pits">apricot pits</div>
+            <div data-value="benzodiazepine toxicity">benzodiazepine toxicity</div>
+            <div data-value="Beta Blocker (antidote glucagon)">Beta Blocker (antidote glucagon)</div>
+            <div data-value="Black Widow envenomation">Black Widow envenomation</div>
+            <div data-value="Botulism (non-infant)">Botulism (non-infant)</div>
+            <div data-value="Botulism (infant/neonate)">Botulism (infant/neonate)</div>
+            <div data-value="Ca channel blocker (antidote Ca Salts)">Ca channel blocker (antidote Ca Salts)</div>
+            <div data-value="Ca channel blocker (antidote glucagon)">Ca channel blocker (antidote glucagon)</div>
+            <div data-value="Coral snake envenomation">Coral snake envenomation</div>
+            <div data-value="Copperhead snake envenomation">Copperhead snake envenomation</div>
+            <div data-value="Cottonmouth/water moccasin envenomation">Cottonmouth/water moccasin envenomation</div>
+            <div data-value="Cs-137">Cs-137</div>
+            <div data-value="curium">curium</div>
+            <div data-value="cyanide">cyanide</div>
+            <div data-value="cyanogen chloride">cyanogen chloride</div>
+            <div data-value="digoxin">digoxin</div>
+            <div data-value="ethylene glycol (ethanol as antidote)">ethylene glycol (ethanol as antidote)</div>
+            <div data-value="ethylene glycol (fomepizole as antidote)">ethylene glycol (fomepizole as antidote)</div> 
+            <div data-value="Fluoride overdose">Fluoride overdose</div>
+            <div data-value="HCN">HCN</div>  
+            <div data-value="Heavy metal (arsenic, gold, mercury) toxicity">Heavy metal (arsenic, gold, mercury) toxicity</div>
+            <div data-value="hydrazines/gyromitrin">hydrazines/gyromitrin</div>                      
+            <div data-value="Iron toxicity">Iron toxicity</div>
+            <div data-value="isoniazid">isoniazid</div>
+            <div data-value="I-131">I-131</div>                      
+            <div data-value="KCN">KCN</div>
+            <div data-value="Latrodectus mactans envenomation">Latrodectus mactans envenomation</div>
+            <div data-value="Lead encephalopathy">Lead encephalopathy</div>
+            <div data-value="Lead toxicity">Lead toxicity</div>
+            <div data-value="methanol (ethanol as antidote)">methanol (ethanol as antidote)</div>
+            <div data-value="methanol (fomepizole as antidote)">methanol (fomepizole as antidote)</div>
+            <div data-value="methemoglobinemia">methemoglobinemia</div>                      
+            <div data-value="Micrurus fulvius envenomation">Micrurus fulvius envenomation</div>  
+            <div data-value="NaCN">NaCN</div>   
+            <div data-value="N-methyl carbamate insecticide poisoning">N-methyl carbamate insecticide poisoning</div>
+            <div data-value="opioid toxicity">opioid toxicity</div>
+            <div data-value="organophosphate insecticide (antidote atropine)">organophosphate insecticide (antidote atropine)</div>
+            <div data-value="organophosphate pesticides (antidote pralidoxime)">organophosphate pesticides (antidote pralidoxime)</div>                    
+            <div data-value="peach pits">peach pits</div>
+            <div data-value="Pit-Viper envenomation">Pit-Viper envenomation</div>
+            <div data-value="plutonium">plutonium</div>   
+            <div data-value="Rattlesnake envenomation">Rattlesnake envenomation</div>
+            <div data-value="radioiodine">radioiodine</div>
+            <div data-value="Smoke Inhalation (synthetic materials)">Smoke Inhalation (synthetic materials)</div>
+            <div data-value="sodium channel blockers">sodium channel blockers</div>
+            <div data-value="sulfonylurea induced hypoglycemia">sulfonylurea induced hypoglycemia</div>
+            <div data-value="thallium">thallium</div> 
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-primary" id="again-toxin-btn">Try Again</button>
+        </div>
+      </div>
+      <!-- Specific Toxin Content -->
+      <div class="form-group col-sm-12" id="toxin-html"></div>
+    </form>    
+</div>
