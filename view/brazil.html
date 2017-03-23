@@ -1,0 +1,69 @@
+<!-- Antidotes Page -->
+<script type="text/javascript" src="js/framework/bootstrap-formhelpers.js"></script>
+<script type="text/javascript" src="js/controller/AlgorithmSwitchCtrl.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // Initialize antidote page
+    var opt = $('#option').val(); 
+    if (opt != "") {
+        $("#antidote").val(opt);
+    } else {
+        setDefaultSelection();
+    }
+    chooseAntidote();
+});
+</script>
+<div id="antidote-page">
+    <form class="form-horizontal">
+      <div class="form-group col-sm-7">                    
+        <label for="antidote" class="col-sm-3 control-label"><font color="red">* </font>Choose Antidote</label>
+        <div class="col-sm-8">
+          <div class="bfh-selectbox" id="antidote" data-value="Antidote" data-filter="true">
+            <div data-value="Antidote">------------------ Select an Antidote Here ------------------</div>
+            <div data-value="acetylcysteine">acetylcysteine</div>
+            <div data-value="amyl nitrite">amyl nitrite</div>
+            <div data-value="atropine (for insecticide exposure)">atropine (for insecticide exposure)</div>
+            <div data-value="Black Widow (Latrodectus mactans) antivenin">Black Widow (Latrodectus mactans) antivenin</div>
+            <div data-value="Botulism Antitoxin (non-infant)">Botulism Antitoxin (non-infant)</div>
+            <div data-value="calcium chloride">calcium chloride</div>
+            <div data-value="calcium gluconate">calcium gluconate</div>
+            <div data-value="calcium salts">calcium salts</div>
+            <div data-value="Ca-DTPA/Zn-DTPA">Ca-DTPA/Zn-DTPA</div>   
+            <div data-value="Ca-EDTA & dimercaprol">Ca-EDTA & dimercaprol</div>   
+            <div data-value="Coral Snake antivenin">Coral Snake antivenin</div>
+            <div data-value="crotalidae antivenin (ovine) CroFab">crotalidae antivenin (ovine) CroFab</div>
+            <div data-value="Cyanide Antidote Kit">Cyanide Antidote Kit</div>
+            <div data-value="deferoxamine">deferoxamine</div>
+            <div data-value="Digoxin Immune FAB">Digoxin Immune FAB</div>
+            <div data-value="dimercaprol (lead toxicity)">dimercaprol (lead toxicity)</div>
+            <div data-value="dimercaprol (for arsenic, gold, or mercury toxicity)">dimercaprol (for arsenic, gold, or mercury toxicity)</div>
+            <div data-value="ethanol">ethanol</div>
+            <div data-value="flumazenil">flumazenil</div>  
+            <div data-value="fomepizole">fomepizole</div>   
+            <div data-value="glucagon">glucagon</div>                        
+            <div data-value="hydroxocobalamin">hydroxocobalamin</div>                    
+            <div data-value="Infant Botulism Immune Globulin (Baby-BIG)">Infant Botulism Immune Globulin (Baby-BIG)</div>
+            <div data-value="Latrodectus mactans antivenin">Latrodectus mactans antiveninn</div>
+            <div data-value="methylene blue">methylene blue</div>                     
+            <div data-value="Micrurus fulvius antivenin">Micrurus fulvius antivenin</div>
+            <div data-value="naloxone">naloxone</div>
+            <div data-value="octreotide">octreotide</div>
+            <div data-value="physostigmine">physostigmine</div>
+            <div data-value="potassium iodide">potassium iodide</div>
+            <div data-value="pralidoxime">pralidoxime</div>
+            <div data-value="prussian blue">prussian blue</div>
+            <div data-value="pyridoxine">pyridoxine</div>
+            <div data-value="sodium bicarbonate">sodium bicarbonate</div>                   
+            <div data-value="sodium nitrite">sodium nitrite</div> 
+            <div data-value="sodium thiosulfate">sodium thiosulfate</div>     
+            <div data-value="vitamin B-6">vitamin B-6</div>                                                      
+          </div>
+        </div> 
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-primary" id="again-antidote-btn">Try Again</button>
+        </div> 
+      </div>
+      <!-- Specific Antidote Content -->
+      <div class="form-group col-sm-12" id="antidote-html"></div>
+    </form>   
+</div>  

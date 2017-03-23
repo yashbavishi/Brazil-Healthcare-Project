@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+<script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>     
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/app.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
+  <script type="text/javascript" src="js/directives/appInfo.js"></script>
+
+<body ng-app="brazilApp" ng-controller="CustomersCtrl">
+ 
+<div>
+<app-info></app-info>
+<form>
+    Year:<br>
+    <input type="text" ng-model="year"><br>
+    Region:<br>
+    <input type="text" ng-model="form.region">
+    <br><br>
+    <button  ng-click="getRecords(form)">Submit</button>
+    </form>
+  
+<p>something</p>
+
+<table>
+  <tr ng-repeat="x in names track by $index">
+    <td>{{ x.pop_sus }}</td>
+    <td>{{ x.reigon }}</td>
+  </tr>
+</table>
+
+
+</div>
+ 
+
+ 
+
+</body>
+</html>
+
