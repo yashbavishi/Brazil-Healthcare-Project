@@ -1,23 +1,4 @@
-// app.controller('CustomersCtrl', function($scope, $http) {
-//   $scope.form = {};
-//   $scope.form.region = '';
-//   $scope.test = '123';
-
-
-  
-// $scope.getRecords =  function(form) {
-// 	var config = {
-//     params: {
-//         region: $scope.form.region
-//     }
-// }
-// 	$http.get('action.php', config)
-//    .success(function (response) {$scope.names = response.data; });
-
-
-// }});
-
-app.controller('CustomersCtrl', function($scope, $http, $window) {
+app.controller('QueryFormCtrl', function($scope, $http, $window) {		//Controller to set up form and process user's request with a HTTP GET request to the backend.
   $scope.form = {};
   $scope.names = '';
   $scope.form.region = {};
@@ -28,15 +9,15 @@ app.controller('CustomersCtrl', function($scope, $http, $window) {
   $scope.Regions = ['All', '1', '2', '3', '4', '5'];
   $scope.States = ['All', 'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'Go', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'To'];
   $scope.form.SocioEconomicDataColumn = {};
-$scope.getRecords =  function(form) {
+$scope.getRecords =  function(form) {						//Function to send a Http GET request to retrieve data records requested by the user.
 	var conditions = {
     params: {
         region: JSON.stringify($scope.form.region),
         year: JSON.stringify($scope.form.year),
         state: JSON.stringify($scope.form.state),
         SocioEconomicDataColumn: JSON.stringify($scope.form.SocioEconomicDataColumn),
-		PopulationAndAgeColumn: JSON.stringify($scope.form.PopulationAndAgeColumn),
-		HealthCareColumn: JSON.stringify($scope.form.HealthCareColumn)
+	PopulationAndAgeColumn: JSON.stringify($scope.form.PopulationAndAgeColumn),
+	HealthCareColumn: JSON.stringify($scope.form.HealthCareColumn)
     }
 }
 	
