@@ -20,26 +20,26 @@ $HealthCareColumns = ['health_expend_tot', 'trans_sus', 'diabe_reg', 'diabe_trac
 // for( $l = 0; $l<sizeof($PopulationAndAgeColumn); $l++ ){
 // echo($PopulationAndAgeColumn[$l]);
 // }
-$conn = new mysqli("localhost", "root", "", "BrazilFull");
-$request1 = "SELECT ";
-if($SocioEconomicDataColumn[0] == 'All'){
+$conn = new mysqli("localhost", "root", "", "BrazilFull");  //connects with the mysql server
+$request1 = "SELECT ";					//Start building the SQL query
+if($SocioEconomicDataColumn[0] == 'All'){		//Add Socio - Economic Data Columns selected by the user.
 	for( $i = 0; $i<sizeof($SocioEconomicDataColumns); $i++ ) {
-    	if($i != 0 && $i != sizeof($SocioEconomicDataColumns)){
-    		$request1 .= ', ';
+    		if($i != 0 && $i != sizeof($SocioEconomicDataColumns)){
+    			$request1 .= ', ';
+    		}
+    		$request1 .= $SocioEconomicDataColumns[$i];
     	}
-    	$request1 .= $SocioEconomicDataColumns[$i];
-    }
 }
 else{
 	for( $l = 0; $l<sizeof($SocioEconomicDataColumn); $l++ ){
-        if($l != 0 && $l != sizeof($SocioEconomicDataColumn)){
-            $request1 .= ', ';
-        }
-        $request1 .= $SocioEconomicDataColumn[$l];
-    }
+        	if($l != 0 && $l != sizeof($SocioEconomicDataColumn)){
+            	$request1 .= ', ';
+        	}
+        	$request1 .= $SocioEconomicDataColumn[$l];
+    	}
 }
 
-if($PopulationAndAgeColumn[0] == 'All'){
+if($PopulationAndAgeColumn[0] == 'All'){		//Add Population and Age Data Columns selected by the user.
     $request1 .= ', ';
     for( $i = 0; $i<sizeof($PopulationAndAgeColumns); $i++ ) {
         if($i != 0 && $i != sizeof($PopulationAndAgeColumns)){
@@ -58,7 +58,7 @@ else{
     }
 }
 
-if($HealthCareColumn[0] == 'All'){
+if($HealthCareColumn[0] == 'All'){		//Add HealthCare Data Columns selected by the user.
     $request1 .= ', ';
     for( $i = 0; $i<sizeof($HealthCareColumns); $i++ ) {
         if($i != 0 && $i != sizeof($HealthCareColumns)){
@@ -78,7 +78,7 @@ else{
 }
 
 $request1 .= " FROM `table 1`";
-if($year[0] != 'All'){
+if($year[0] != 'All'){				//Adding conditions for 'WHERE' clause. Year parameter.
     $request1 .= " WHERE year IN (";
     for( $i = 0; $i<sizeof($year); $i++ ) {
         if($i != 0 && $i != sizeof($year)){
@@ -88,36 +88,22 @@ if($year[0] != 'All'){
     }
     $request1 .= ')';
 }
-// else{
-//     for( $l = 0; $l<sizeof($year); $l++ ){
-//         if($l != 0 && $l != sizeof($year)){
-//             $request1 .= ', ';
-//         }
-//         $request1 .= $year[$l];
-//     }
-// }
 
-if($region[0] != NULL){
-if($region[0] != 'All'){
-    $request1 .= " AND reigon IN (";
-    for( $i = 0; $i<sizeof($region); $i++ ) {
-        if($i != 0 && $i != sizeof($region)){
-            $request1 .= ', ';
-        }
-        $request1 .= $region[$i];
-    }
-    $request1 .= ')';
+
+if($region[0] != NULL){				//Adding Region parameter.
+	if($region[0] != 'All'){
+    		$request1 .= " AND reigon IN (";
+    		for( $i = 0; $i<sizeof($region); $i++ ) {
+        		if($i != 0 && $i != sizeof($region)){
+            			$request1 .= ', ';
+        		}
+        		$request1 .= $region[$i];
+    		}
+    		$request1 .= ')';
+	}
 }
-}
-// else{
-//     for( $l = 0; $l<sizeof($region); $l++ ){
-//         if($l != 0 && $l != sizeof($region)){
-//             $request1 .= ', ';
-//         }
-//         $request1 .= $region[$l];
-//     }
-// }
-if($state[0] != 'All'){
+
+if($state[0] != 'All'){			//Adding State Parameter.
     $request1 .= " AND State_cap IN (";
     for( $i = 0; $i<sizeof($state); $i++ ) {
         if($i != 0 && $i != sizeof($state)){
@@ -127,12 +113,12 @@ if($state[0] != 'All'){
     }
     $request1 .= ')';
 }
-$request1 .= ' LIMIT 10';
+$request1 .= ' LIMIT 10';	//Limiting query result to 10 tuples.
 //echo($request1);
 $result = $conn->query($request1);
 
 $outp = "";
-while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
+while($rs = $result->fetch_array(MYSQLI_ASSOC)) {		//Fetching results and building the data into JSON format for displaying on HTML page.
     if ($outp != "") {$outp .= ",";}
     //$outp .= '{"pop_sus":"'  . $rs["pop_sus"] . '",';
     //$outp .= '"reigon":"'   . $rs["reigon"]        . '"}';
