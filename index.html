@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Brazil Healthcare Project</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="css/bootstrap-formhelpers.css">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="brazilApp">
+	<div class="container">
+    	<nav class="navbar navbar-default main-nav" role="navigation">
+			  <!-- Met HI Lab Logo -->        
+        <div class="navbar-header">
+          <a href="http://www.met-hilab.org/"><img src="img/hilab-logo.png" alt="MET HiLab"></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#antidote-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>			  
+ 		  	</div>          
+        <!-- Navigation Tabs -->
+        <div class="collapse navbar-collapse" id="antidote-navbar">
+          <ul class="nav nav-tabs main-nav-ul">
+              <li><a href="#home" id="tab-home"><img src="img/home.jpg">Home</a></li>
+              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Brazil</a></li>
+              <li><a href="#toxin" id="tab-toxin"><img src="img/toxin.jpg">Analysis</a></li>
+              <li><a href="#FAQ" id="tab-FAQ"><img src="img/FAQ.jpg">FAQ</a></li>   
+          </ul>
+        </div>
+		  </nav>
+      
+      <!-- Page Display -->
+      <div class="main-content" ng-controller="CustomersCtrl">        	       
+   		    <div class="hide" id="user-info-div">
+          	<h2 class="section-title"><span id="alg-title"></span>Brazil Healthcare Data Search!</h2>                        
+              <p>
+                Please select the attributes you want the data for.
+              </p></br>
+
+              <!-- User information form -->
+            
+              <div class="row">
+
+                <form class="form-horizontal col-sm-7" id="info-form" id="info-form">
+                    <div class="form-group">
+                      <label for="year"></font>Year:</label>
+                      <select class = form-control ng-model="form.year" ng-options="i for i in Years" multiple></select><br>
+
+                      <label for="region"></font>Region:</label>
+                      <select class = form-control ng-model="form.region" ng-options="i for i in Regions" multiple></select><br>
+                    
+                    <label for="state"></font>State:</label>
+                    <select class= form-control ng-model="form.state" ng-options="i for i in States" multiple></select><br>
+                    
+                    <label for="socioEconomic"></font>Socio Economic Data Columns:</label>
+                    <select class = form-control ng-model="form.SocioEconomicDataColumn" ng-options="i for i in SocioEconomicDataColumns" multiple></select><br>   
+                    
+                    <label for="popAndAge"></font>Population and Age Data Columns:</label>
+                    <select class = form-control ng-model="form.PopulationAndAgeColumn" ng-options="i for i in PopulationAndAgeColumns" multiple></select> <br>  
+                
+                    <label for="healthcareData"></font>Healthcare Data Columns:</label>
+                    <select class = form-control ng-model="form.HealthCareColumn" ng-options="i for i in HealthCareColumns" multiple></select><br>  
+
+                    <input type="hidden" id="option" value="">
+                    <div class="col-xs-3 info-reset">
+                      <button type="button" class="btn btn-primary" ng-click="getRecords(form)">Submit</button>
+                    </div>
+                  
+                  </div>
+                </form>
+              
+              </div>
+            </div>
+
+              <!--div class="row" >                                
+                  <form class="form-horizontal col-sm-7" id="info-form">
+                      
+                      <div class="form-group">                    
+                          <label  class="col-sm-3 control-label"></font>Year</label>
+                          <div class="col-sm-5">
+                              <select class="form-control" id="year" ng-model="year">
+                                  <option>2000</option>
+                                  <option>2001</option>
+                                  <option>2002</option>
+                                  <option>2003</option>
+                                  <option>2004</option>
+                                  <option>2005</option>
+                                  <option>2006</option>
+                                  <option>2007</option>
+                                  <option>2008</option>
+                                  <option>2009</option>
+                                  <option>2010</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group">                    
+                          <label for="age" class="col-sm-3 control-label"><font color="red">* </font>Region</label>
+                          <div class="col-sm-5">
+                              <input type="text" class="form-control" id="age" name="age" placeholder="eg:1,2,3" ng-model="form.region">
+                          </div>
+                      </div>
+                      
+                      <input type="hidden" id="option" value="">
+                      <div class="col-xs-3 info-reset">
+                              <button type="button" class="btn btn-primary" id="reset-btn" ng-click="show(); getRecords(form)">Submit</button>
+                      </div>                               
+                  </form -->
+
+
+                  
+
+                  <!-- table>
+                    <tr ng-repeat="x in names">
+                      <td>{{ x.pop_sus }}</td>
+                      <td>{{ x.reigon }}</td>
+                    </tr>
+                  </table -->
+                    
+                    <table class="table">
+                    <br><br>
+                    <tr class ="succes" ng-repeat="x in records track by $index">
+                      <td>{{ $index+1 }}</td>
+                      <td ng-if="x.State_cap == 0 || x.State_cap">{{x.State_cap}}</td>
+                      <td ng-if="x.Coin_code == 0 || x.Coin_code">{{ x.Coin_code }}</td>
+                      <td ng-if="x.State_code == 0 || x.State_code">{{x.State_code}}</td>
+                      <td ng-if="x.Reigon == 0 || x.Reigon">{{ x.Reigon }}</td>
+                      <td ng-if="x.gdp == 0 || x.gdp">{{ x.gdp }}</td>
+                      <td ng-if="x.worker_expe == 0 || x.worker_expe">{{ x.worker_expe }}</td>
+                      <td ng-if="x.expe_own == 0 || x.expe_own">{{ x.expe_own }}</td>
+                      <td ng-if="x.edu_expense == 0 || x.edu_expense">{{ x.edu_expense }}</td>
+                      <td ng-if="x.literacyrate_15plus == 0 || x.literacyrate_15plus">{{ x.literacyrate_15plus }}</td>
+                      <td ng-if="x.gini_index == 0 || x.gini_index">{{ x.gini_index }}</td>
+                      <td ng-if="x.lgdpr_pc == 0 || x.lgdpr_pc">{{ x.lgdpr_pc }}</td>
+                      <td ng-if="x.inpc == 0 || x.inpc">{{ x.inpc }}</td>
+                      <td ng-if="x.lgdpr == 0 || x.lgdpr">{{ x.lgdpr }}</td>
+                      <td ng-if="x.min_wage == 0 || x.min_wage">{{ x.min_wage }}</td>
+                      <td ng-if="x.developed == 0 || x.developed">{{ x.developed }}</td>
+                      <td ng-if="x.efici_expvida_exponencial == 0 || x.efici_expvida_exponencial">{{ x.efici_expvida_exponencial }}</td>
+                      <td ng-if="x.efici_mort_inf_expo == 0 || x.efici_mort_inf_expo">{{ x.efici_mort_inf_expo }}</td>
+                      <td ng-if="x.illitera == 0 || x.illitera">{{ x.illitera }}</td>
+                      <td ng-if="x.illiteibge == 0 || x.illiteibge">{{ x.illiteibge }}</td>
+                      <td ng-if="x.mayor_school == 0 || x.mayor_school">{{ x.mayor_school }}</td>
+                      <td ng-if="may_sch_code !== null">{{ x.may_sch_code }}</td>
+                      <td ng-if="x.areakm2 == 0 || x.areakm2">{{ x.areakm2 }}</td>
+                      <td ng-if="x.aream2 == 0 || x.aream2">{{ x.aream2 }}</td>
+                      <td ng-if="x.distance_from_capital == 0 || x.distance_from_capital">{{ x.distance_from_capital }}</td>
+                      <td ng-if="x.capital_state == 0 || x.capital_state">{{ x.capital_state }}</td>
+                      <td ng-if="x.densidade == 0 || x.densidade">{{ x.densidade }}</td>
+                      <td ng-if="x.ageunder1 == 0 || x.ageunder1">{{x.ageunder1}}</td>
+                      <td ng-if="x.age_14 == 0 || x.age_14">{{x.age_14}}</td>
+                      <td ng-if="x.age_49 == 0 || x.age_49">{{x.age_49}}</td>
+                      <td ng-if="x.age_1014 == 0 || x.age_1014">{{x.age_1014}}</td>
+                      <td ng-if="x.age_1519 == 0 || x.age_1519">{{x.age_1519}}</td>
+                      <td ng-if="x.age_2029 == 0 || x.age_2029">{{x.age_2029}}</td>
+                      <td ng-if="x.age_3039 == 0 || x.age_3039">{{x.age_3039}}</td>
+                      <td ng-if="x.age_4049 == 0 || x.age_4049">{{x.age_4049}}</td>
+                      <td ng-if="x.age_5059 == 0 || x.age_5059">{{x.age_5059}}</td>
+                      <td ng-if="x.age_6069 == 0 || x.age_6069">{{x.age_6069}}</td>
+                      <td ng-if="x.age_7079 == 0 || x.age_7079">{{x.age_7079}}</td>
+                      <td ng-if="x.more80 == 0 || x.more80">{{x.more80}}</td>
+                      <td ng-if="x.popb15 == 0 || x.popb15">{{x.popb15}}</td>
+                      <td ng-if="x.Pop_sus == 0 || x.Pop_sus">{{x.Pop_sus}}</td>
+                      <td ng-if="x.pop40y == 0 || x.pop40y">{{x.pop40y}}</td>
+                      <td ng-if="x.health_expend_tot == 0 || x.health_expend_tot">{{x.health_expend_tot}}</td>
+                      <td ng-if="x.trans_sus == 0 || x.trans_sus">{{x.trans_sus}}</td>
+                      <td ng-if="x.diabe_reg == 0 || x.diabe_reg">{{x.diabe_reg}}</td>
+                      <td ng-if="x.diabe_track == 0 || x.diabe_track">{{x.diabe_track}}</td>
+                      <td ng-if="x.insurance == 0 || x.insurance">{{x.insurance}}</td>
+                      <td ng-if="x.bed == 0 || x.bed">{{x.bed}}</td>
+                      <td ng-if="x.new_diabe_reg == 0 || x.new_diabe_reg">{{x.new_diabe_reg}}</td>
+                      <td ng-if="x.new_diabe_track == 0 || x.new_diabe_track">{{x.new_diabe_track}}</td>
+                      <td ng-if="x.obesity == 0 || x.obesity">{{x.obesity}}</td>
+                      <td ng-if="x.diabe_0to14 == 0 || x.diabe_0to14">{{x.diabe_0to14}}</td>
+                      <td ng-if="x.diabe_15 == 0 || x.diabe_15">{{x.diabe_15}}</td>
+                      <td ng-if="x.sus_rate == 0 || x.sus_rate">{{x.sus_rate}}</td>
+                      <td ng-if="x.psf_cove == 0 || x.psf_cove">{{x.psf_cove}}</td>
+                      <td ng-if="x.sanita == 0 || x.sanita">{{x.sanita}}</td>
+                    </tr>
+                    <button ng-if = "myVar"  type ="button" class="btn btn-primary" ng-model = "form.offset" ng-click="getMoreRecords(form)">Next 100</button>
+                    &nbsp; &nbsp; &nbsp;
+                    <button ng-if = "myVar" id="Download" type ="button" class="btn btn-primary"  export-to-csv = "">Download to CSV</button>
+                  </table>
+
+
+
+
+
+                  <!--table>
+                    <tr ng-init="limit=20" ng-repeat="x in names | limitTo:limit track by $index">
+                      <td>{{ x.pop_sus }}</td>
+                      <td>{{ x.reigon }}</td>
+                      <button id="X" class="btn btn-primary" ng-click="$parent.limit=names.length" ng-if="limit==20">More</button>
+                      <button id="Y" class="btn btn-primary" ng-click="$parent.limit=20" ng-if="limit!=20">Less</button> 
+                    </tr>
+                  </table-->
+
+                  
+              <!--/div-->
+          
+          <!--<div ng-view id="alg-view"></div>-->
+      </div>
+
+
+		<!-- Website Footer -->
+		<footer id="footer">
+			<div class="text-center">
+				<img src="img/bu-logo-small.gif">
+  			<div>
+    			<ul class="list-inline">
+          	<li><a href="http://www.met-hilab.org/" target="_blank">MET HI Lab</a></li>
+          </ul>
+			  </div>
+    	</div>
+      <!-- Disclaimer -->
+  		<div class="col-lg-offset-2 col-lg-8 main-disclaimer">
+		    <p>
+          DISCLAIMER: This educational program is not intended for individual patient care. If you are caring for a known or suspected poisoned patient, please contact your regional poison control center for patient specific management by dialing 1-800-222-1222.
+        </p>
+  		</div>
+    </footer>
+	</div>  <!-- /container -->
+  
+
+  <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>  
+  <script type="text/javascript" src="js/app.js"></script>   
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script> 
+  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/DownloadCtrl.js"></script>
+  <!--for table style -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</body>
+</html>

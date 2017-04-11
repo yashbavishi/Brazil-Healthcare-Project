@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html >
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+<script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.min.js"></script>     
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/app.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
+  <script type="text/javascript" src="js/directives/appInfo.js"></script>
+
+<body ng-app="brazilApp" ng-controller="CustomersCtrl">
+ 
+<div>
+<app-info></app-info>
+<form>
+    Year:<br>
+    <select ng-model="form.year" ng-options="i for i in Years" multiple></select><br>
+    Region:<br>
+    <select ng-model="form.region" ng-options="i for i in Regions" multiple></select><br>
+    State:<br>
+    <select ng-model="form.state" ng-options="i for i in States" multiple></select><br>
+    Socio Economic Data Columns:<br>
+    <select ng-model="form.SocioEconomicDataColumn" ng-options="i for i in SocioEconomicDataColumns" multiple></select>    
+    <br><br>
+    Population and Age Data Columns:<br>
+    <select ng-model="form.PopulationAndAgeColumn" ng-options="i for i in PopulationAndAgeColumns" multiple></select>    
+    <br><br>
+    Healthcare Data Columns:<br>
+    <select ng-model="form.HealthCareColumn" ng-options="i for i in HealthCareColumns" multiple></select>    
+    <br><br>
+    <button  ng-click="getRecords(form)">Submit</button>
+</form>
+  
+<!-- <div ng-switch="form.SocioEconomicDataColumn">
+  <div ng-switch-when="form.SocioEconomicDataColumn = 'All'">
+    <p>Something<p>
+    <table>
+      <tr ng-repeat="x in names">
+        <td>{{ x.State_cap }}</td>
+        <td>{{ x.reigon }}</td>
+      </tr>
+    </table>
+  </div>
+  <div ng-switch-default> -->
+    <table>
+      <tr ng-repeat="x in records track by $index">
+        <td>{{ $index+1 }}</td>
+        <td ng-if="x.State_cap == 0 || x.State_cap">{{x.State_cap}}</td>
+        <td ng-if="x.Coin_code == 0 || x.Coin_code">{{ x.Coin_code }}</td>
+        <td ng-if="x.State_code == 0 || x.State_code">{{x.State_code}}</td>
+        <td ng-if="x.Reigon == 0 || x.Reigon">{{ x.Reigon }}</td>
+        <td ng-if="x.gdp == 0 || x.gdp">{{ x.gdp }}</td>
+        <td ng-if="x.worker_expe == 0 || x.worker_expe">{{ x.worker_expe }}</td>
+        <td ng-if="x.expe_own == 0 || x.expe_own">{{ x.expe_own }}</td>
+        <td ng-if="x.edu_expense == 0 || x.edu_expense">{{ x.edu_expense }}</td>
+        <td ng-if="x.literacyrate_15plus == 0 || x.literacyrate_15plus">{{ x.literacyrate_15plus }}</td>
+        <td ng-if="x.gini_index == 0 || x.gini_index">{{ x.gini_index }}</td>
+        <td ng-if="x.lgdpr_pc == 0 || x.lgdpr_pc">{{ x.lgdpr_pc }}</td>
+        <td ng-if="x.inpc == 0 || x.inpc">{{ x.inpc }}</td>
+        <td ng-if="x.lgdpr == 0 || x.lgdpr">{{ x.lgdpr }}</td>
+        <td ng-if="x.min_wage == 0 || x.min_wage">{{ x.min_wage }}</td>
+        <td ng-if="x.developed == 0 || x.developed">{{ x.developed }}</td>
+        <td ng-if="x.efici_expvida_exponencial == 0 || x.efici_expvida_exponencial">{{ x.efici_expvida_exponencial }}</td>
+        <td ng-if="x.efici_mort_inf_expo == 0 || x.efici_mort_inf_expo">{{ x.efici_mort_inf_expo }}</td>
+        <td ng-if="x.illitera == 0 || x.illitera">{{ x.illitera }}</td>
+        <td ng-if="x.illiteibge == 0 || x.illiteibge">{{ x.illiteibge }}</td>
+        <td ng-if="x.mayor_school == 0 || x.mayor_school">{{ x.mayor_school }}</td>
+        <td ng-if="may_sch_code !== null">{{ x.may_sch_code }}</td>
+        <td ng-if="x.areakm2 == 0 || x.areakm2">{{ x.areakm2 }}</td>
+        <td ng-if="x.aream2 == 0 || x.aream2">{{ x.aream2 }}</td>
+        <td ng-if="x.distance_from_capital == 0 || x.distance_from_capital">{{ x.distance_from_capital }}</td>
+        <td ng-if="x.capital_state == 0 || x.capital_state">{{ x.capital_state }}</td>
+        <td ng-if="x.densidade == 0 || x.densidade">{{ x.densidade }}</td>
+        <td ng-if="x.ageunder1 == 0 || x.ageunder1">{{x.ageunder1}}</td>
+        <td ng-if="x.age_14 == 0 || x.age_14">{{x.age_14}}</td>
+        <td ng-if="x.age_49 == 0 || x.age_49">{{x.age_49}}</td>
+        <td ng-if="x.age_1014 == 0 || x.age_1014">{{x.age_1014}}</td>
+        <td ng-if="x.age_1519 == 0 || x.age_1519">{{x.age_1519}}</td>
+        <td ng-if="x.age_2029 == 0 || x.age_2029">{{x.age_2029}}</td>
+        <td ng-if="x.age_3039 == 0 || x.age_3039">{{x.age_3039}}</td>
+        <td ng-if="x.age_4049 == 0 || x.age_4049">{{x.age_4049}}</td>
+        <td ng-if="x.age_5059 == 0 || x.age_5059">{{x.age_5059}}</td>
+        <td ng-if="x.age_6069 == 0 || x.age_6069">{{x.age_6069}}</td>
+        <td ng-if="x.age_7079 == 0 || x.age_7079">{{x.age_7079}}</td>
+        <td ng-if="x.more80 == 0 || x.more80">{{x.more80}}</td>
+        <td ng-if="x.popb15 == 0 || x.popb15">{{x.popb15}}</td>
+        <td ng-if="x.Pop_sus == 0 || x.Pop_sus">{{x.Pop_sus}}</td>
+        <td ng-if="x.pop40y == 0 || x.pop40y">{{x.pop40y}}</td>
+        <td ng-if="x.health_expend_tot == 0 || x.health_expend_tot">{{x.health_expend_tot}}</td>
+        <td ng-if="x.trans_sus == 0 || x.trans_sus">{{x.trans_sus}}</td>
+        <td ng-if="x.diabe_reg == 0 || x.diabe_reg">{{x.diabe_reg}}</td>
+        <td ng-if="x.diabe_track == 0 || x.diabe_track">{{x.diabe_track}}</td>
+        <td ng-if="x.insurance == 0 || x.insurance">{{x.insurance}}</td>
+        <td ng-if="x.bed == 0 || x.bed">{{x.bed}}</td>
+        <td ng-if="x.new_diabe_reg == 0 || x.new_diabe_reg">{{x.new_diabe_reg}}</td>
+        <td ng-if="x.new_diabe_track == 0 || x.new_diabe_track">{{x.new_diabe_track}}</td>
+        <td ng-if="x.obesity == 0 || x.obesity">{{x.obesity}}</td>
+        <td ng-if="x.diabe_0to14 == 0 || x.diabe_0to14">{{x.diabe_0to14}}</td>
+        <td ng-if="x.diabe_15 == 0 || x.diabe_15">{{x.diabe_15}}</td>
+        <td ng-if="x.sus_rate == 0 || x.sus_rate">{{x.sus_rate}}</td>
+        <td ng-if="x.psf_cove == 0 || x.psf_cove">{{x.psf_cove}}</td>
+        <td ng-if="x.sanita == 0 || x.sanita">{{x.sanita}}</td>
+      </tr>
+      <button ng-model = "form.offset" ng-click="getMoreRecords(form)">1000 More</button>
+    </table>  
+<!-- </div> -->
+<!-- <button ng-model = "form.offset" ng-click="getRecords(form)">1000 More</button> -->
+<!-- <div ng-repeat="i in records">
+<p>Somthing</p>
+</div> -->
+</div>
+
+ 
+ 
+
+</body>
+</html>
+
