@@ -20,7 +20,9 @@ table tr:nth-child(even) {
   <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
   <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/framework/angular.js"></script>
-  <script type="text/javascript" src="js/framework/angular-route.js"></script>     
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.min.js"></script>     
   <script type="text/javascript" src="js/main.js"></script> 
   <script type="text/javascript" src="js/app.js"></script> 
   <script type="text/javascript" src="js/validation.js"></script>
@@ -63,7 +65,8 @@ table tr:nth-child(even) {
   </div>
   <div ng-switch-default> -->
     <table>
-      <tr ng-repeat="x in names">
+      <tr ng-repeat="x in records track by $index">
+        <td>{{ $index+1 }}</td>
         <td ng-if="x.State_cap == 0 || x.State_cap">{{x.State_cap}}</td>
         <td ng-if="x.Coin_code == 0 || x.Coin_code">{{ x.Coin_code }}</td>
         <td ng-if="x.State_code == 0 || x.State_code">{{x.State_code}}</td>
@@ -120,8 +123,13 @@ table tr:nth-child(even) {
         <td ng-if="x.psf_cove == 0 || x.psf_cove">{{x.psf_cove}}</td>
         <td ng-if="x.sanita == 0 || x.sanita">{{x.sanita}}</td>
       </tr>
+      <button ng-model = "form.offset" ng-click="getMoreRecords(form)">1000 More</button>
     </table>  
 <!-- </div> -->
+<!-- <button ng-model = "form.offset" ng-click="getRecords(form)">1000 More</button> -->
+<!-- <div ng-repeat="i in records">
+<p>Somthing</p>
+</div> -->
 </div>
 
  

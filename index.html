@@ -24,9 +24,9 @@ table tr:nth-child(even) {
 </head>
 
 <body ng-app="brazilApp">
-	<div class="container">
-    	<nav class="navbar navbar-default main-nav" role="navigation">
-			  <!-- Met HI Lab Logo -->        
+  <div class="container">
+      <nav class="navbar navbar-default main-nav" role="navigation">
+        <!-- Met HI Lab Logo -->        
         <div class="navbar-header">
           <a href="http://www.met-hilab.org/"><img src="img/hilab-logo.png" alt="MET HiLab"></a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#antidote-navbar">
@@ -34,121 +34,66 @@ table tr:nth-child(even) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>			  
- 		  	</div>          
+          </button>       
+        </div>          
         <!-- Navigation Tabs -->
         <div class="collapse navbar-collapse" id="antidote-navbar">
           <ul class="nav nav-tabs main-nav-ul">
-              <li><a href="#home" id="tab-home"><img src="img/home.jpg">Home</a></li>
-              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Brazil</a></li>
-              <li><a href="#toxin" id="tab-toxin"><img src="img/toxin.jpg">Analysis</a></li>
-              <li><a href="#FAQ" id="tab-FAQ"><img src="img/FAQ.jpg">FAQ</a></li>   
+              <li><a href="#home" id="tab-home"><img src="img/home.png">Home</a></li>
+              <li><a href="#brazil" id="tab-brazil"><img src="img/health.png">Data</a></li>
+              <li><a href="#toxin" id="tab-toxin"><img src="img/analysis.png">Analysis</a></li>
+              <li><a href="#FAQ" id="tab-FAQ"><img src="img/question.png">FAQ</a></li>   
           </ul>
         </div>
-		  </nav>
+      </nav>
       
-      <!-- Page Display -->
-      <div class="main-content" ng-controller="CustomersCtrl">        	       
-   		    <div class="hide" id="user-info-div">
-          	<h2 class="section-title"><span id="alg-title"></span> Algorithm</h2>                        
-              <p>
-                Please enter the attributes you want the data for.
-              </p></br>
 
-              <!-- User information form -->
-              <div class="row" >                                
-                  <form class="form-horizontal col-sm-7" id="info-form">
-                      
-                      <div class="form-group">                    
-                          <label  class="col-sm-3 control-label"></font>Year</label>
-                          <div class="col-sm-5">
-                              <select class="form-control" id="year" ng-model="year">
-                                  <option>2000</option>
-                                  <option>2001</option>
-                                  <option>2002</option>
-                                  <option>2003</option>
-                                  <option>2004</option>
-                                  <option>2005</option>
-                                  <option>2006</option>
-                                  <option>2007</option>
-                                  <option>2008</option>
-                                  <option>2009</option>
-                                  <option>2010</option>
-                              </select>
-                          </div>
-                      </div>
+      <div ng-view></div>
 
-                      <div class="form-group">                    
-                          <label for="age" class="col-sm-3 control-label"><font color="red">* </font>Region</label>
-                          <div class="col-sm-5">
-                              <input type="text" class="form-control" id="age" name="age" placeholder="eg:1,2,3" ng-model="form.region">
-                          </div>
-                      </div>
-                      
-                      <input type="hidden" id="option" value="">
-                      <div class="col-xs-3 info-reset">
-                              <button type="button" class="btn btn-primary" id="reset-btn" ng-click="show(); getRecords(form)">Submit</button>
-                      </div>                               
-                  </form>
+    <!-- Website Footer -->
+    <footer style="clear: left" id="footer">
 
-
-                  <button class="btn btn-primary" ng-if = "showDwnld" export-to-csv = "">Download to CSV</button>
-
-                  <table>
-                    <tr ng-repeat="x in names">
-                      <td>{{ x.pop_sus }}</td>
-                      <td>{{ x.reigon }}</td>
-                    </tr>
-                  </table>
-
-
-                  <!--<table>
-                    <tr ng-init="limit=20" ng-repeat="x in names | limitTo:limit track by $index">
-                      <td>{{ x.pop_sus }}</td>
-                      <td>{{ x.reigon }}</td>
-                      <button class="btn btn-primary" ng-click="$parent.limit=names.length" ng-if="limit==20">More</button>
-                      <button class="btn btn-primary" ng-click="$parent.limit=20" ng-if="limit!=20">Less</button> 
-                    </tr>
-                  </table>-->
-
-                  
-              </div>
-          </div>
-          <!--<div ng-view id="alg-view"></div>-->
-      </div>
-
-
-		<!-- Website Footer -->
-		<footer id="footer">
-			<div class="text-center">
-				<img src="img/bu-logo-small.gif">
-  			<div>
-    			<ul class="list-inline">
-          	<li><a href="http://www.met-hilab.org/" target="_blank">MET HI Lab</a></li>
+      <div class="text-center">
+        <img src="img/bu-logo-small.gif">
+        <div>
+          <ul class="list-inline">
+            <li><a href="http://www.met-hilab.org/" target="_blank">MET HI Lab</a></li>
           </ul>
-			  </div>
-    	</div>
+        </div>
+      </div>
       <!-- Disclaimer -->
-  		<div class="col-lg-offset-2 col-lg-8 main-disclaimer">
-		    <p>
+      <div class="col-lg-offset-2 col-lg-8 main-disclaimer">
+        <!-- <p>
           DISCLAIMER: This educational program is not intended for individual patient care. If you are caring for a known or suspected poisoned patient, please contact your regional poison control center for patient specific management by dialing 1-800-222-1222.
-        </p>
-  		</div>
+        </p> -->
+      </div>
     </footer>
-	</div>  <!-- /container -->
+  </div> 
+  
+      
+
+           
+
+
   
 
-  <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
-  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="js/framework/angular.js"></script>
-  <script type="text/javascript" src="js/framework/angular-route.js"></script>  
-  <script type="text/javascript" src="js/app.js"></script>   
+  <script type="text/javascript" src="js/framework/angular-route.js"></script> 
+  <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script> 
   <script type="text/javascript" src="js/main.js"></script> 
-  <script type="text/javascript" src="js/validation.js"></script>
   <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script> 
   <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
   <script type="text/javascript" src="js/controller/DownloadCtrl.js"></script>
+  <!--for table style -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </body>
 </html>
