@@ -4,7 +4,6 @@ $(document).ready(function(){
 
 	$('input[type="text"]').val("");  // Reset all textfield value
 	
-	resetOptionValue();
 	initiateTabActivation();
 
 });

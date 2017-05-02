@@ -1,39 +1,3 @@
-// var app = angular.module("crudApp", []);
-
-// app.controller("userController", function($scope,$http){
-//     $scope.users = [];
-//     // $scope.tempUserData = {};
-//     // function to get records from the database
-//     $scope.getRecords = function(){
-//         $http.get('action.php', {
-//             params:{
-//                 'type':'view'
-//             }
-//         }).success(function(response){
-//             if(response.status == 'OK'){
-//                 $scope.users = response.records;
-//             } 
-//         });
-    
-//     };
-// // function to display success message
-//     // $scope.messageSuccess = function(msg){
-//     //     $('.alert-success > p').html(msg);
-//     //     $('.alert-success').show();
-//     //     $('.alert-success').delay(5000).slideUp(function(){
-//     //         $('.alert-success > p').html('');
-//     //     });
-//     // };
-    
-//     // // function to display error message
-//     // $scope.messageError = function(msg){
-//     //     $('.alert-danger > p').html(msg);
-//     //     $('.alert-danger').show();
-//     //     $('.alert-danger').delay(5000).slideUp(function(){
-//     //         $('.alert-danger > p').html('');
-//     //     });
-//     // };
-// });
 
 app.controller("userController", function($scope,$http){
     $scope.users = [];

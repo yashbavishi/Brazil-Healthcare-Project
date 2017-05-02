@@ -1,69 +1,219 @@
-<!-- Antidotes Page -->
-<script type="text/javascript" src="js/framework/bootstrap-formhelpers.js"></script>
-<script type="text/javascript" src="js/controller/AlgorithmSwitchCtrl.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    // Initialize antidote page
-    var opt = $('#option').val(); 
-    if (opt != "") {
-        $("#antidote").val(opt);
-    } else {
-        setDefaultSelection();
-    }
-    chooseAntidote();
-});
-</script>
-<div id="antidote-page">
-    <form class="form-horizontal">
-      <div class="form-group col-sm-7">                    
-        <label for="antidote" class="col-sm-3 control-label"><font color="red">* </font>Choose Antidote</label>
-        <div class="col-sm-8">
-          <div class="bfh-selectbox" id="antidote" data-value="Antidote" data-filter="true">
-            <div data-value="Antidote">------------------ Select an Antidote Here ------------------</div>
-            <div data-value="acetylcysteine">acetylcysteine</div>
-            <div data-value="amyl nitrite">amyl nitrite</div>
-            <div data-value="atropine (for insecticide exposure)">atropine (for insecticide exposure)</div>
-            <div data-value="Black Widow (Latrodectus mactans) antivenin">Black Widow (Latrodectus mactans) antivenin</div>
-            <div data-value="Botulism Antitoxin (non-infant)">Botulism Antitoxin (non-infant)</div>
-            <div data-value="calcium chloride">calcium chloride</div>
-            <div data-value="calcium gluconate">calcium gluconate</div>
-            <div data-value="calcium salts">calcium salts</div>
-            <div data-value="Ca-DTPA/Zn-DTPA">Ca-DTPA/Zn-DTPA</div>   
-            <div data-value="Ca-EDTA & dimercaprol">Ca-EDTA & dimercaprol</div>   
-            <div data-value="Coral Snake antivenin">Coral Snake antivenin</div>
-            <div data-value="crotalidae antivenin (ovine) CroFab">crotalidae antivenin (ovine) CroFab</div>
-            <div data-value="Cyanide Antidote Kit">Cyanide Antidote Kit</div>
-            <div data-value="deferoxamine">deferoxamine</div>
-            <div data-value="Digoxin Immune FAB">Digoxin Immune FAB</div>
-            <div data-value="dimercaprol (lead toxicity)">dimercaprol (lead toxicity)</div>
-            <div data-value="dimercaprol (for arsenic, gold, or mercury toxicity)">dimercaprol (for arsenic, gold, or mercury toxicity)</div>
-            <div data-value="ethanol">ethanol</div>
-            <div data-value="flumazenil">flumazenil</div>  
-            <div data-value="fomepizole">fomepizole</div>   
-            <div data-value="glucagon">glucagon</div>                        
-            <div data-value="hydroxocobalamin">hydroxocobalamin</div>                    
-            <div data-value="Infant Botulism Immune Globulin (Baby-BIG)">Infant Botulism Immune Globulin (Baby-BIG)</div>
-            <div data-value="Latrodectus mactans antivenin">Latrodectus mactans antiveninn</div>
-            <div data-value="methylene blue">methylene blue</div>                     
-            <div data-value="Micrurus fulvius antivenin">Micrurus fulvius antivenin</div>
-            <div data-value="naloxone">naloxone</div>
-            <div data-value="octreotide">octreotide</div>
-            <div data-value="physostigmine">physostigmine</div>
-            <div data-value="potassium iodide">potassium iodide</div>
-            <div data-value="pralidoxime">pralidoxime</div>
-            <div data-value="prussian blue">prussian blue</div>
-            <div data-value="pyridoxine">pyridoxine</div>
-            <div data-value="sodium bicarbonate">sodium bicarbonate</div>                   
-            <div data-value="sodium nitrite">sodium nitrite</div> 
-            <div data-value="sodium thiosulfate">sodium thiosulfate</div>     
-            <div data-value="vitamin B-6">vitamin B-6</div>                                                      
-          </div>
-        </div> 
-        <div class="col-sm-1">
-          <button type="button" class="btn btn-primary" id="again-antidote-btn">Try Again</button>
-        </div> 
-      </div>
-      <!-- Specific Antidote Content -->
-      <div class="form-group col-sm-12" id="antidote-html"></div>
-    </form>   
-</div>  
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Brazil Healthcare Project</title>
+</head>
+
+<body ng-app="brazilApp">
+      <h4 align="right"><a href = "#login">Logout</a></h4><br>
+
+      <!-- Page Display -->
+
+      <div ng-controller="CustomersCtrl"> 
+
+          <div id="user-info-div">
+            <h2 class="section-title"></span>Brazil Healthcare Data Search!</h2>                        
+              <p>
+                Please select the attributes you want the data for.
+              </p></br>
+
+              <!-- User information form -->
+
+              <div class="row">
+
+                <form class="form-horizontal col-sm-7"  id="info-form">
+                    <div class="form-group">
+                      <label for="year"></font>Year:</label>
+                      <select class = form-control ng-model="form.year" ng-options="i for i in Years" multiple></select><br>
+                      
+                      <label for="region"></font>Region:</label>
+                      <select class = form-control ng-model="form.region" multiple>
+                        <option ng-repeat="i in Regions" ng-value="i.value">{{i.name}}</option>
+                      </select><br>
+                      <label for="state"></font>State:</label>
+                      <!-- <select class= form-control ng-model="form.state" ng-options="state for state in getStates()" multiple></select><br> -->
+                      <select class = form-control ng-model="form.state" multiple>
+                        <option ng-repeat="state in getStates()" ng-value="state.value">{{state.name}}</option>
+                      </select><br>
+                      <label for="socioEconomic"></font>Socio Economic Data Columns:</label>
+                      <!-- <select class = form-control ng-model="form.SocioEconomicDataColumn" ng-options="i for i in SocioEconomicDataColumns" multiple></select><br> -->   
+                      <select class = form-control ng-model="form.SocioEconomicDataColumn" multiple>
+                        <option ng-repeat="i in SocioEconomicDataColumns" ng-value="i.value">{{i.name}}</option>
+                      </select><br>
+                      <label for="popAndAge"></font>Population and Age Data Columns:</label>
+                      <!-- <select class = form-control ng-model="form.PopulationAndAgeColumn" ng-options="i for i in PopulationAndAgeColumns" multiple></select> <br> -->  
+                      <select class = form-control ng-model="form.PopulationAndAgeColumn" multiple>
+                        <option ng-repeat="i in PopulationAndAgeColumns" ng-value="i.value">{{i.name}}</option>
+                      </select><br>
+                      <label for="healthcareData"></font>Healthcare Data Columns:</label>
+                      <!-- <select class = form-control ng-model="form.HealthCareColumn" ng-options="i for i in HealthCareColumns" multiple></select><br> -->  
+                      <select class = form-control ng-model="form.HealthCareColumn" multiple>
+                        <option ng-repeat="i in HealthCareColumns" ng-value="i.value">{{i.name}}</option>
+                      </select><br>
+                      <input type="hidden" id="option" value="">
+                      <div class="col-xs-3 info-reset">
+                      <button  type="button" class="btn btn-primary" ng-click="getRecords(form)">Submit</button>
+                      </div>
+                  
+                    </div>
+                </form>
+              
+              </div>
+            </div>
+            <div>
+                    <table class="table"  id="top">
+                    <br><br>
+                    <thead>
+                      <tr>
+                      <th ng-if="records[1].year == 0 || records[1].year">Sr. no.</th>
+                      <th ng-if="records[1].year == 0 || records[1].year">Year</th>
+                      <th ng-if="records[1].state_name == 0 || records[1].state_name">State</th>
+                      <th ng-if="records[1].county_name == 0 || records[1].county_name">Municipalty</th>
+                      <th ng-if="records[1].county_code == 0 || records[1].county_code">Municipalty Code</th>
+                      <th ng-if="records[1].region == 0 || records[1].region">Region</th>
+                      <th ng-if="records[1].gdp == 0 || records[1].gdp">GDP</th>
+                      <th ng-if="records[1].worker_expe == 0 || records[1].worker_expe">Exp On Health Worker</th>
+                      <th ng-if="records[1].expe_own == 0 || records[1].expe_own">Municipal Self Health Exp</th>
+                      <th ng-if="records[1].edu_expense == 0 || records[1].edu_expense">Municipal Edu Exp</th>
+                      <th ng-if="records[1].literacyrate_15plus == 0 || records[1].literacyrate_15plus">Liter Rate 15+</th>
+                      <th ng-if="records[1].gini_index == 0 || records[1].gini_index">Gini Index</th>
+                      <th ng-if="records[1].lgdpr_pc == 0 || records[1].lgdpr_pc">Log GDP pc Y2000</th>
+                      <th ng-if="records[1].inpc == 0 || records[1].inpc">Inflation Index</th>
+                      <th ng-if="records[1].lgdpr == 0 || records[1].lgdpr">Log GDP Y2000</th>
+                      <th ng-if="records[1].min_wage == 0 || records[1].min_wage">Min Wage</th>
+                      <th ng-if="records[1].developed == 0 || records[1].developed">Developed</th>
+                      <th ng-if="records[1].efici_expvida_exponencial == 0 || records[1].efici_expvida_exponencial">Efficiency By Life Exp</th>
+                      <th ng-if="records[1].efici_mort_inf_expo == 0 || records[1].efici_mort_inf_expo">Efficiency By Inf Mortality</th>
+                      <th ng-if="records[1].illitera == 0 || records[1].illitera">Illiteral Rate SUS</th>
+                      <th ng-if="records[1].illiteibge == 0 || records[1].illiteibge">Illiteral Rate Census</th>
+                      <!-- <th ng-if="records[1].mayor_school == 0 || records[1].mayor_school">{{ records[1].mayor_school }}</th> -->
+                      <!-- <th ng-if="may_sch_code !== null">{{ records[1].may_sch_code }}</th> -->
+                      <th ng-if="records[1].areakm2 == 0 || records[1].areakm2">Area (km2)</th>
+                      <th ng-if="records[1].aream2 == 0 || records[1].aream2">Area (m2)</th>
+                      <th ng-if="records[1].distance_from_capital == 0 || records[1].distance_from_capital">Dis To Capital</th>
+                      <th ng-if="records[1].capital_state == 0 || records[1].capital_state">Capital State</th>
+                      <th ng-if="records[1].densidade == 0 || records[1].densidade">Pop Density</th>
+                      <th ng-if="records[1].ageunder1 == 0 || records[1].ageunder1">Population < 1</th>
+                      <th ng-if="records[1].age_14 == 0 || records[1].age_14">Population 0-4</th>
+                      <th ng-if="records[1].age_49 == 0 || records[1].age_49">Population 5-9</th>
+                      <th ng-if="records[1].age_1014 == 0 || records[1].age_1014">Population 10-14</th>
+                      <th ng-if="records[1].age_1519 == 0 || records[1].age_1519">Population 15-19</th>
+                      <th ng-if="records[1].age_2029 == 0 || records[1].age_2029">Population 20-29</th>
+                      <th ng-if="records[1].age_3039 == 0 || records[1].age_3039">Population 30-39</th>
+                      <th ng-if="records[1].age_4049 == 0 || records[1].age_4049">Population 40-49</th>
+                      <th ng-if="records[1].age_5059 == 0 || records[1].age_5059">Population 50-59</th>
+                      <th ng-if="records[1].age_6069 == 0 || records[1].age_6069">Population  60-69</th>
+                      <th ng-if="records[1].age_7079 == 0 || records[1].age_7079">Population 70-79</th>
+                      <th ng-if="records[1].more80 == 0 || records[1].more80">Population > 80</th>
+                      <th ng-if="records[1].popb15 == 0 || records[1].popb15">Population < 15</th>
+                      <th ng-if="records[1].Pop_sus == 0 || records[1].Pop_sus">Population SUS</th>
+                      <th ng-if="records[1].pop40y == 0 || records[1].pop40y">Population > 40</th>
+                      <th ng-if="records[1].health_expend_tot == 0 || records[1].health_expend_tot">Municipal Health Exp</th>
+                      <th ng-if="records[1].trans_sus == 0 || records[1].trans_sus">SUS Health Transfer</th>
+                      <th ng-if="records[1].diabe_reg == 0 || records[1].diabe_reg">SUS Diabetes Register</th>
+                      <th ng-if="records[1].diabe_track == 0 || records[1].diabe_track">SUS Diabetes Tracked</th>
+                      <th ng-if="records[1].insurance == 0 || records[1].insurance">Percentage Insured</th>
+                      <th ng-if="records[1].bed == 0 || records[1].bed">Municipal No. Beds</th>
+                      <th ng-if="records[1].new_diabe_reg == 0 || records[1].new_diabe_reg">New SUS Diabetes Register</th>
+                      <th ng-if="records[1].new_diabe_track == 0 || records[1].new_diabe_track">New SUS Diabetes Tracked</th>
+                      <th ng-if="records[1].obesity == 0 || records[1].obesity">Obesity</th>
+                      <th ng-if="records[1].diabe_0to14 == 0 || records[1].diabe_0to14">Diabetes 0-14</th>
+                      <th ng-if="records[1].diabe_15 == 0 || records[1].diabe_15">Diabetes > 15</th>
+                      <th ng-if="records[1].sus_rate == 0 || records[1].sus_rate">SUS Health Rate</th>
+                      <th ng-if="records[1].psf_cove == 0 || records[1].psf_cove">PSF Coverage</th>
+                      <th ng-if="records[1].sanita == 0 || records[1].sanita">Sanitation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class ="succes" ng-repeat="x in records track by $index">
+                      <td>{{ $index+1 }}</td>
+                      <td ng-if="x.year == 0 || x.year">{{x.year}}</td>
+                      <td ng-if="x.state_name == 0 || x.state_name">{{x.state_name}}</td>
+                      <td ng-if="x.county_name == 0 || x.county_name">{{ x.county_name }}</td>
+                      <td ng-if="x.county_code == 0 || x.county_code">{{x.county_code}}</td>
+                      <td ng-if="x.region == 0 || x.region">{{ x.region }}</td>
+                      <td ng-if="x.gdp == 0 || x.gdp">{{ x.gdp }}</td>
+                      <td ng-if="x.worker_expe == 0 || x.worker_expe">{{ x.worker_expe }}</td>
+                      <td ng-if="x.expe_own == 0 || x.expe_own">{{ x.expe_own }}</td>
+                      <td ng-if="x.edu_expense == 0 || x.edu_expense">{{ x.edu_expense }}</td>
+                      <td ng-if="x.literacyrate_15plus == 0 || x.literacyrate_15plus">{{ x.literacyrate_15plus }}</td>
+                      <td ng-if="x.gini_index == 0 || x.gini_index">{{ x.gini_index }}</td>
+                      <td ng-if="x.lgdpr_pc == 0 || x.lgdpr_pc">{{ x.lgdpr_pc }}</td>
+                      <td ng-if="x.inpc == 0 || x.inpc">{{ x.inpc }}</td>
+                      <td ng-if="x.lgdpr == 0 || x.lgdpr">{{ x.lgdpr }}</td>
+                      <td ng-if="x.min_wage == 0 || x.min_wage">{{ x.min_wage }}</td>
+                      <td ng-if="x.developed == 0 || x.developed">{{ x.developed }}</td>
+                      <td ng-if="x.efici_expvida_exponencial == 0 || x.efici_expvida_exponencial">{{ x.efici_expvida_exponencial }}</td>
+                      <td ng-if="x.efici_mort_inf_expo == 0 || x.efici_mort_inf_expo">{{ x.efici_mort_inf_expo }}</td>
+                      <td ng-if="x.illitera == 0 || x.illitera">{{ x.illitera }}</td>
+                      <td ng-if="x.illiteibge == 0 || x.illiteibge">{{ x.illiteibge }}</td>
+                      <!-- <td ng-if="x.mayor_school == 0 || x.mayor_school">{{ x.mayor_school }}</td> -->
+                      <!-- <td ng-if="may_sch_code !== null">{{ x.may_sch_code }}</td> -->
+                      <td ng-if="x.areakm2 == 0 || x.areakm2">{{ x.areakm2 }}</td>
+                      <td ng-if="x.aream2 == 0 || x.aream2">{{ x.aream2 }}</td>
+                      <td ng-if="x.distance_from_capital == 0 || x.distance_from_capital">{{ x.distance_from_capital }}</td>
+                      <td ng-if="x.capital_state == 0 || x.capital_state">{{ x.capital_state }}</td>
+                      <td ng-if="x.densidade == 0 || x.densidade">{{ x.densidade }}</td>
+                      <td ng-if="x.ageunder1 == 0 || x.ageunder1">{{x.ageunder1}}</td>
+                      <td ng-if="x.age_14 == 0 || x.age_14">{{x.age_14}}</td>
+                      <td ng-if="x.age_49 == 0 || x.age_49">{{x.age_49}}</td>
+                      <td ng-if="x.age_1014 == 0 || x.age_1014">{{x.age_1014}}</td>
+                      <td ng-if="x.age_1519 == 0 || x.age_1519">{{x.age_1519}}</td>
+                      <td ng-if="x.age_2029 == 0 || x.age_2029">{{x.age_2029}}</td>
+                      <td ng-if="x.age_3039 == 0 || x.age_3039">{{x.age_3039}}</td>
+                      <td ng-if="x.age_4049 == 0 || x.age_4049">{{x.age_4049}}</td>
+                      <td ng-if="x.age_5059 == 0 || x.age_5059">{{x.age_5059}}</td>
+                      <td ng-if="x.age_6069 == 0 || x.age_6069">{{x.age_6069}}</td>
+                      <td ng-if="x.age_7079 == 0 || x.age_7079">{{x.age_7079}}</td>
+                      <td ng-if="x.more80 == 0 || x.more80">{{x.more80}}</td>
+                      <td ng-if="x.popb15 == 0 || x.popb15">{{x.popb15}}</td>
+                      <td ng-if="x.Pop_sus == 0 || x.Pop_sus">{{x.Pop_sus}}</td>
+                      <td ng-if="x.pop40y == 0 || x.pop40y">{{x.pop40y}}</td>
+                      <td ng-if="x.health_expend_tot == 0 || x.health_expend_tot">{{x.health_expend_tot}}</td>
+                      <td ng-if="x.trans_sus == 0 || x.trans_sus">{{x.trans_sus}}</td>
+                      <td ng-if="x.diabe_reg == 0 || x.diabe_reg">{{x.diabe_reg}}</td>
+                      <td ng-if="x.diabe_track == 0 || x.diabe_track">{{x.diabe_track}}</td>
+                      <td ng-if="x.insurance == 0 || x.insurance">{{x.insurance}}</td>
+                      <td ng-if="x.bed == 0 || x.bed">{{x.bed}}</td>
+                      <td ng-if="x.new_diabe_reg == 0 || x.new_diabe_reg">{{x.new_diabe_reg}}</td>
+                      <td ng-if="x.new_diabe_track == 0 || x.new_diabe_track">{{x.new_diabe_track}}</td>
+                      <td ng-if="x.obesity == 0 || x.obesity">{{x.obesity}}</td>
+                      <td ng-if="x.diabe_0to14 == 0 || x.diabe_0to14">{{x.diabe_0to14}}</td>
+                      <td ng-if="x.diabe_15 == 0 || x.diabe_15">{{x.diabe_15}}</td>
+                      <td ng-if="x.sus_rate == 0 || x.sus_rate">{{x.sus_rate}}</td>
+                      <td ng-if="x.psf_cove == 0 || x.psf_cove">{{x.psf_cove}}</td>
+                      <td ng-if="x.sanita == 0 || x.sanita">{{x.sanita}}</td>
+                    </tr>
+                    </tbody>
+                    <button ng-if = "myVar" id="Download" type ="button" class="btn btn-primary" ng-disabled="!isDisabled"  ng-click="exportAllData()">Download to CSV</button><br><br>
+
+                  </table>
+                  </div>
+                  <button ng-if = "myVar"  type ="button" class="btn btn-primary" ng-model = "form.offset" ng-click="getMoreRecords(form)">Next 100</button>
+                  &nbsp; &nbsp; &nbsp;
+                  <button ng-if = "myVar" class="btn btn-primary" ng-model = "form.offset" ng-click="gotoTop()">Scroll to top</button>
+
+            </div>
+
+   
+  
+  <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="js/framework/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/framework/angular.js"></script>
+  <script type="text/javascript" src="js/framework/angular-route.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.js"></script>
+  <script type="text/javascript" src="js/framework/jsonQ.min.js"></script>     
+  <script type="text/javascript" src="js/main.js"></script> 
+  <script type="text/javascript" src="js/app.js"></script> 
+  <script type="text/javascript" src="js/validation.js"></script>
+  <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/CustomersCtrl.js"></script>
+  <script type="text/javascript" src="js/controller/DownloadCtrl.js"></script>  
+
+
+
+
+</body>
+</html>

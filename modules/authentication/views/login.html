@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="brazilApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Brazil Healthcare Project</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-formhelpers.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+</head>
+
+<!--Home Page Data-->
+<body>
+<div style="float: left; width: 75%" id="home-page">
+<!--h4 align="right"><a href = "#login">Logout</a></h4-->
+<h3 class="text-center"><b>BSED: Brazil Socio-Economic Database</b></h3>
+<br><br>
+    <p style="line-height: 200%">
+        Brazil Socio-Economic Database (BSED) is a data source and analysis platform that supports informatics studies in socio-economy and healthcare. BSED hosts a unique dataset compiled from various data sources containing annual socio-economic and health indicators for the 5560 Brazil municipalities in the 12-year period from 2000 to 2011. 
+    </p>
+    <!-- Disclaimer -->
+    <br><br>
+    <div class="alert alert-success">
+        <h4>BSED Facilities</h4> 
+        <a href="#brazil">User customized search for specific indicators of interest </a>
+    </div>
+</div>
+
+
+<form style="float: right;width: 23%" name="form" ng-submit="login()" role="form">
+    
+    <div class="alert alert-info">
+        Please Login to access other features!<br />
+    </div>
+
+    <div  ng-show="error" class="alert alert-danger">{{error}}</div>
+
+
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <i class="fa fa-key"></i>
+        <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <i class="fa fa-lock"></i>
+        <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+    </div>
+    <div class="form-actions">
+        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Login</button>
+        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+    </form>
+
+
+    <script type="text/javascript" src="js/framework/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/framework/jquery.validate.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+    <script type="text/javascript" src="js/controller/RoutingCtrl.js"></script>     
+    <script src="modules/authentication/services.js"></script>
+    <script src="modules/authentication/controllers.js"></script>
+    <script src="modules/home/controllers.js"></script>
+</body>
+</html>
